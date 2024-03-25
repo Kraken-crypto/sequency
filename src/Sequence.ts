@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import {applyMixins} from "./internal";
 import {All as AllOp} from "./operators/sync/all";
 import {Any as AnyOp} from "./operators/sync/any";
@@ -32,6 +33,8 @@ import {GroupBy as GroupByOp} from "./operators/sync/groupBy";
 import {IndexOf as IndexOfOp} from "./operators/sync/indexOf";
 import {IndexOfFirst as IndexOfFirstOp} from "./operators/sync/indexOfFirst";
 import {IndexOfLast as IndexOfLastOp} from "./operators/sync/indexOfLast";
+import {IsEmpty as IsEmptyOp} from "./operators/sync/isEmpty";
+import {IsNotEmpty as IsNotEmptyOp} from "./operators/sync/isNotEmpty";
 import {JoinToString as JoinToStringOp} from "./operators/sync/joinToString";
 import {Last as LastOp} from "./operators/sync/last";
 import {LastOrNull as LastOrNullOp} from "./operators/sync/lastOrNull";
@@ -71,6 +74,82 @@ import {ToSet as ToSetOp} from "./operators/sync/toSet";
 import {Unzip as UnzipOp} from "./operators/sync/unzip";
 import {WithIndex as WithIndexOp} from "./operators/sync/withIndex";
 import {Zip as ZipOp} from "./operators/sync/zip";
+=======
+import {All} from "./all";
+import {Any} from "./any";
+import {AsIterable} from "./asIterable";
+import {Associate} from "./associate";
+import {AssociateBy} from "./associateBy";
+import {Average} from "./average";
+import {Chunk} from "./chunk";
+import {Contains} from "./contains";
+import {Count} from "./count";
+import {Distinct} from "./distinct";
+import {DistinctBy} from "./distinctBy";
+import {Drop} from "./drop";
+import {DropWhile} from "./dropWhile";
+import {ElementAt} from "./elementAt";
+import {ElementAtOrElse} from "./elementAtOrElse";
+import {ElementAtOrNull} from "./elementAtOrNull";
+import {Filter} from "./filter";
+import {FilterIndexed} from "./filterIndexed";
+import {FilterNot} from "./filterNot";
+import {FilterNotNull} from "./filterNotNull";
+import {First} from "./first";
+import {FirstOrNull} from "./firstOrNull";
+import {FlatMap} from "./flatMap";
+import {Flatten} from "./flatten";
+import {Fold} from "./fold";
+import {FoldIndexed} from "./foldIndexed";
+import {ForEach} from "./forEach";
+import {ForEachIndexed} from "./forEachIndexed";
+import {GroupBy} from "./groupBy";
+import {IndexOf} from "./indexOf";
+import {IndexOfFirst} from "./indexOfFirst";
+import {IndexOfLast} from "./indexOfLast";
+import {IsEmpty} from "./isEmpty";
+import {IsNotEmpty} from "./isNotEmpty";
+import {JoinToString} from "./joinToString";
+import {Last} from "./last";
+import {LastOrNull} from "./lastOrNull";
+import {Map} from "./map";
+import {MapIndexed} from "./mapIndexed";
+import {MapNotNull} from "./mapNotNull";
+import {Max} from "./max";
+import {MaxBy} from "./maxBy";
+import {MaxWith} from "./maxWith";
+import {Merge} from "./merge";
+import {Min} from "./min";
+import {MinBy} from "./minBy";
+import {Minus} from "./minus";
+import {MinWith} from "./minWith";
+import {None} from "./none";
+import {OnEach} from "./onEach";
+import {Partition} from "./partition";
+import {Plus} from "./plus";
+import {Reduce} from "./reduce";
+import {ReduceIndexed} from "./reduceIndexed";
+import {Reverse} from "./reverse";
+import {Single} from "./single";
+import {SingleOrNull} from "./singleOrNull";
+import {Sorted} from "./sorted";
+import {SortedBy} from "./sortedBy";
+import {SortedByDescending} from "./sortedByDescending";
+import {SortedDescending} from "./sortedDescending";
+import {SortedWith} from "./sortedWith";
+import {Sum} from "./sum";
+import {SumBy} from "./sumBy";
+import {Take} from "./take";
+import {TakeWhile} from "./takeWhile";
+import {ToArray} from "./toArray";
+import {ToMap} from "./toMap";
+import {ToSet} from "./toSet";
+import {Unzip} from "./unzip";
+import {WithIndex} from "./withIndex";
+import {Zip} from "./zip";
+import GeneratorIterator from "./GeneratorIterator";
+import GeneratorSeedIterator from "./GeneratorSeedIterator";
+>>>>>>> 09ca0af (Add isEmpty and isNotEmpty)
 
 /**
  * A Sequence provides a fluent functional API consisting
@@ -87,7 +166,7 @@ export interface Sequence<T> extends SequenceOperators<T> {
  */
 export interface SequenceOperators<T> extends AllOp, AnyOp, AsIterableOp, AssociateOp, AssociateByOp<T>, AverageOp, ChunkOp, ContainsOp, CountOp, DistinctOp, DistinctByOp, DropOp, DropWhileOp,
     ElementAtOp, ElementAtOrElseOp, ElementAtOrNullOp, FilterOp, FilterIndexedOp, FilterNotOp, FilterNotNullOp, FirstOp, FirstOrNullOp, FlatMapOp, FlattenOp, FoldOp,
-    FoldIndexedOp, ForEachOp, ForEachIndexedOp, GroupByOp, IndexOfOp, IndexOfFirstOp, IndexOfLastOp, JoinToStringOp, LastOp, LastOrNullOp, MapOp, MapIndexedOp, MapNotNullOp, MaxOp, MaxByOp,
+    FoldIndexedOp, ForEachOp, ForEachIndexedOp, GroupByOp, IndexOfOp, IndexOfFirstOp, IndexOfLastOp, IsEmptyOp, IsNotEmptyOp, JoinToStringOp, LastOp, LastOrNullOp, MapOp, MapIndexedOp, MapNotNullOp, MaxOp, MaxByOp,
     MaxWithOp, MergeOp, MinOp, MinByOp, MinusOp, MinWithOp, NoneOp, OnEachOp, OnEachIndexedOp, PartitionOp, PlusOp, ReduceOp, ReduceIndexedOp, ReverseOp, SingleOp, SingleOrNullOp, SortedOp,
     SortedByOp, SortedByDescendingOp, SortedDescendingOp, SortedWithOp, SumOp, SumByOp, TakeOp, TakeWhileOp, ToArrayOp, ToAsyncSequenceOp, ToMapOp, ToSetOp, UnzipOp, WithIndexOp, ZipOp {
 }
@@ -99,6 +178,6 @@ export class SequenceImpl<T> {
 
 applyMixins(SequenceImpl, [AllOp, AnyOp, AsIterableOp, AssociateOp, AssociateByOp, AverageOp, ChunkOp, ContainsOp, CountOp, DistinctOp, DistinctByOp, DropOp, DropWhileOp,
     ElementAtOp, ElementAtOrElseOp, ElementAtOrNullOp, FilterOp, FilterIndexedOp, FilterNotOp, FilterNotNullOp, FirstOp, FirstOrNullOp, FlatMapOp, FlattenOp, FoldOp,
-    FoldIndexedOp, ForEachOp, ForEachIndexedOp, GroupByOp, IndexOfOp, IndexOfFirstOp, IndexOfLastOp, JoinToStringOp, LastOp, LastOrNullOp, MapOp, MapIndexedOp, MapNotNullOp, MaxOp, MaxByOp,
+    FoldIndexedOp, ForEachOp, ForEachIndexedOp, GroupByOp, IndexOfOp, IndexOfFirstOp, IndexOfLastOp, IsEmptyOp, IsNotEmptyOp, JoinToStringOp, LastOp, LastOrNullOp, MapOp, MapIndexedOp, MapNotNullOp, MaxOp, MaxByOp,
     MaxWithOp, MergeOp, MinOp, MinByOp, MinusOp, MinWithOp, NoneOp, OnEachOp, OnEachIndexedOp, PartitionOp, PlusOp, ReduceOp, ReduceIndexedOp, ReverseOp, SingleOp, SingleOrNullOp, SortedOp,
     SortedByOp, SortedByDescendingOp, SortedDescendingOp, SortedWithOp, SumOp, SumByOp, TakeOp, TakeWhileOp, ToArrayOp, ToAsyncSequenceOp, ToMapOp, ToSetOp, UnzipOp, WithIndexOp, ZipOp]);
