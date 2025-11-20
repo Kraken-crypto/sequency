@@ -1,0 +1,110 @@
+name: Build and Publish
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build-and-publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      packages: write
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          registry-url: 'https://npm.pkg.github.com'
+          scope: '@${{ github.repository_owner }}'
+
+      - name: Setup Yarn
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Enable Corepack
+        run: corepack enable
+
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: Build project
+        run: yarn build
+
+      - name: Publish to GitHub Packages
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          # Get version from package.json
+          VERSION=$(node -p "require('./package.json').version")
+          
+          # Remove 'v' prefix if present
+          VERSION=${VERSION#v}
+          
+          # Update package.json version
+          npm version $VERSION --no-git-tag-version
+          
+          # Configure npm authentication for GitHub Packages
+          echo "//npm.pkg.github.com/:_authToken=${{ secrets.GITHUB_TOKEN }}" >> .npmrc
+          
+          # Publish
+          npm publish
+
+      - name: Create Release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          # Get version from package.json (before restoring original name)
+          VERSION=$(node -p "require('./package.json').version")
+          VERSION=${VERSION#v}
+          TAG_NAME="v$VERSION"
+          
+          # Configure git
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          
+          # Create git tag if it doesn't exist
+          if ! git rev-parse "$TAG_NAME" >/dev/null 2>&1; then
+            git tag "$TAG_NAME"
+            git push origin "$TAG_NAME"
+          fi
+          
+          # Create GitHub release using GitHub API
+          RELEASE_RESPONSE=$(curl -s -w "\n%{http_code}" -X POST \
+            -H "Authorization: token $GITHUB_TOKEN" \
+            -H "Accept: application/vnd.github.v3+json" \
+            "https://api.github.com/repos/${{ github.repository }}/releases" \
+            -d "{\"tag_name\":\"$TAG_NAME\",\"name\":\"$TAG_NAME\",\"body\":\"Release $TAG_NAME\",\"draft\":false,\"prerelease\":false}")
+          
+          HTTP_CODE=$(echo "$RELEASE_RESPONSE" | tail -n1)
+          if [ "$HTTP_CODE" = "201" ]; then
+            echo "Release $TAG_NAME created successfully"
+          elif [ "$HTTP_CODE" = "422" ]; then
+            echo "Release $TAG_NAME already exists"
+          else
+            echo "Failed to create release. HTTP code: $HTTP_CODE"
+            echo "$RELEASE_RESPONSE"
+          fi
+
+      - name: Increment version
+        run: |
+          # Configure git
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          
+          # Increment patch version
+          npm version patch --no-git-tag-version
+          
+          # Commit and push version increment
+          git add package.json
+          git commit -m "chore: increment version after release"
+          git push
+

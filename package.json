@@ -1,5 +1,5 @@
 {
-  "name": "sequency",
+  "name": "@kraken-crypto/sequency",
   "version": "0.20.0",
   "description": "Functional sequences for processing iterable data in JavaScript",
   "main": "./lib/cjs/sequency.js",
@@ -34,10 +34,10 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/winterbe/sequency.git"
+    "url": "https://github.com/Kraken-crypto/sequency.git"
   },
   "bugs": {
-    "url": "https://github.com/winterbe/sequency/issues"
+    "url": "https://github.com/Kraken-crypto/sequency/issues"
   },
   "files": [
     "lib",
@@ -45,6 +45,9 @@
   ],
   "engines": {
     "node": ">=6.0.0"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
   },
   "packageManager": "yarn@4.1.1",
   "devDependencies": {
