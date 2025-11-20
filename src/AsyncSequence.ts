@@ -16,7 +16,6 @@ import {ElementAt as ElementAtOp} from "./operators/async/elementAt";
 import {ElementAtOrElse as ElementAtOrElseOp} from "./operators/async/elementAtOrElse";
 import {ElementAtOrNull as ElementAtOrNullOp} from "./operators/async/elementAtOrNull";
 import {Filter as FilterOp} from "./operators/async/filter";
-import {FilterHolistically as FilterHolisticallyOp} from "./operators/async/filterHolistically";
 import {FilterIndexed as FilterIndexedOp} from "./operators/async/filterIndexed";
 import {FilterNot as FilterNotOp} from "./operators/async/filterNot";
 import {FilterNotNull as FilterNotNullOp} from "./operators/async/filterNotNull";
@@ -87,7 +86,7 @@ export interface AsyncSequence<T> extends AsyncSequenceOperators<T> {
  * @hidden
  */
 export interface AsyncSequenceOperators<T> extends AllOp, AnyOp, AsIterableOp, AssociateOp, AssociateByOp<T>, AverageOp, ChunkOp, ContainsOp, CountOp, DistinctOp, DistinctByOp, DropOp, DropWhileOp,
-    ElementAtOp, ElementAtOrElseOp, ElementAtOrNullOp, FilterOp, FilterHolisticallyOp, FilterIndexedOp, FilterNotOp, FilterNotNullOp, FirstOp, FirstOrNullOp, FlatMapOp, FlattenOp, FoldOp,
+    ElementAtOp, ElementAtOrElseOp, ElementAtOrNullOp, FilterOp, FilterIndexedOp, FilterNotOp, FilterNotNullOp, FirstOp, FirstOrNullOp, FlatMapOp, FlattenOp, FoldOp,
     FoldIndexedOp, ForEachOp, ForEachIndexedOp, GroupByOp, IndexOfOp, IndexOfFirstOp, IndexOfLastOp, JoinToStringOp, LastOp, LastOrNullOp, MapOp, MapIndexedOp, MapNotNullOp, MaxOp, MaxByOp,
     MaxWithOp, MergeOp, MinOp, MinByOp, MinusOp, MinWithOp, NoneOp, OnEachOp, OnEachIndexedOp, PartitionOp, PlusOp, ReduceOp, ReduceIndexedOp, ReverseOp, SingleOp, SingleOrNullOp, SortedOp,
     SortedByOp, SortedByDescendingOp, SortedDescendingOp, SortedWithOp, SumOp, SumByOp, TakeOp, TakeWhileOp, ToArrayOp, ToMapOp, ToSetOp, ToSequenceOp, UnzipOp, WithIndexOp, ZipOp {
@@ -99,7 +98,7 @@ export class AsyncSequenceImpl<T> {
 }
 
 applyMixins(AsyncSequenceImpl, [AllOp, AnyOp, AsIterableOp, AssociateOp, AssociateByOp, AverageOp, ChunkOp, ContainsOp, CountOp, DistinctOp, DistinctByOp, DropOp, DropWhileOp,
-    ElementAtOp, ElementAtOrElseOp, ElementAtOrNullOp, FilterOp, FilterHolisticallyOp, FilterIndexedOp, FilterNotOp, FilterNotNullOp, FirstOp, FirstOrNullOp, FlatMapOp, FlattenOp, FoldOp,
+    ElementAtOp, ElementAtOrElseOp, ElementAtOrNullOp, FilterOp, FilterIndexedOp, FilterNotOp, FilterNotNullOp, FirstOp, FirstOrNullOp, FlatMapOp, FlattenOp, FoldOp,
     FoldIndexedOp, ForEachOp, ForEachIndexedOp, GroupByOp, IndexOfOp, IndexOfFirstOp, IndexOfLastOp, JoinToStringOp, LastOp, LastOrNullOp, MapOp, MapIndexedOp, MapNotNullOp, MaxOp, MaxByOp,
     MaxWithOp, MergeOp, MinOp, MinByOp, MinusOp, MinWithOp, NoneOp, OnEachOp, OnEachIndexedOp, PartitionOp, PlusOp, ReduceOp, ReduceIndexedOp, ReverseOp, SingleOp, SingleOrNullOp, SortedOp,
     SortedByOp, SortedByDescendingOp, SortedDescendingOp, SortedWithOp, SumOp, SumByOp, TakeOp, TakeWhileOp, ToArrayOp, ToMapOp, ToSetOp, ToSequenceOp, UnzipOp, WithIndexOp, ZipOp]);
