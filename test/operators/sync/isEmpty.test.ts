@@ -1,4 +1,4 @@
-import { range, sequenceOf } from "../src/Sequence";
+import {range, sequenceOf} from "../../../src/sequency";
 
 describe("isEmpty", () => {
     it("returns false for infinite sequences", () => {
@@ -17,3 +17,4 @@ describe("isEmpty", () => {
         expect(sequenceOf(1, 3).filter(x => x % 2 !== 0).isEmpty()).toBeFalsy();
     });
 });
+
