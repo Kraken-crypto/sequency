@@ -53,7 +53,7 @@ import {
 - `generateSequence` returns a sequence generated from the given generator function.
 - `extendSequence` allows extending sequences with user-defined operations (see [example](https://github.com/Kraken-crypto/sequency/blob/master/test/extendSequence.test.ts)).
 
-Each `Sequence` provides a fluent functional API consisting of intermediate and terminal operations. Intermediate functions (e.g. `filter`, `map`, `sorted`) return a new sequence, thus enabling method chaining. Terminal functions (e.g. `toArray`, `groupBy`, `findLast`) return an arbitrary result. Detailed descriptions of all operations are available in the [API docs](https://github.com/Kraken-crypto/sequency).
+Each `Sequence` provides a fluent functional API consisting of intermediate and terminal operations. Intermediate functions (e.g. `filter`, `map`, `sorted`) return a new sequence, thus enabling method chaining. Terminal functions (e.g. `toArray`, `groupBy`, `findLast`) return an arbitrary result. Detailed descriptions of all operations are available in the [API docs](https://kraken-crypto.github.io/sequency).
 
 Sequences are **lazily evaluated** to avoid examining all of the input data when it's not necessary. Sequences always perform the minimal amount of operations to gain results. E.g. in a `filter - map - find` sequence both `map` and `find` are executed just one time before returning the single result.
 
@@ -113,7 +113,9 @@ Sequences are **lazily evaluated** to avoid examining all of the input data when
 
 ## API documentation
 
-Sequency is fully documented via inline JSDoc comments. When using an IDE like Intellij IDEA or Webstorm the docs are available inline right inside your editor.
+Full API documentation is available at [Sequency API docs](https://kraken-crypto.github.io/sequency).
+
+Sequency is also fully documented via inline JSDoc comments. When using an IDE like Intellij IDEA or Webstorm the docs are available inline right inside your editor.
 
 ## Why Sequency?
 
