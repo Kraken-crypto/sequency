@@ -6,9 +6,7 @@
 
 ---
 
-<p align="center">
-<strong>★★★ Like this project? <a href="https://github.com/winterbe/sequency/stargazers">Leave a star</a> and <a href="https://twitter.com/winterbe_">follow on Twitter</a>! Thanks. ★★★</strong>
-</p>
+**★★★ Like this project? [Leave a star](https://github.com/winterbe/sequency/stargazers) and [follow on Twitter](https://twitter.com/winterbe_)! Thanks. ★★★**
 
 ## About Sequency
 
@@ -17,7 +15,6 @@ Sequency is a lightweight (**5 KB minified**), intensely tested (**200+ tests, 9
 > [Try Sequency](https://npm.runkit.com/sequency) right in your browser.
 
 ## Getting started
-
 
 ```bash
 npm install --save sequency
@@ -61,19 +58,19 @@ Sequences are **lazily evaluated** to avoid examining all of the input data when
 
 ### Core Components
 
-**Sequence<T>** — The central interface of the library:
+**`Sequence<T>`** — The central interface of the library:
 
 - Contains a single `iterator: Iterator<T>` property for lazy iteration
 - Extends `SequenceOperators<T>`, which combines all operations
 - Sequences can be iterated only once (single-pass)
 
-**SequenceImpl<T>** — The concrete implementation using the **Mixin Pattern**:
+**`SequenceImpl<T>`** — The concrete implementation using the **Mixin Pattern**:
 
 - All operations are added dynamically via the `applyMixins()` function
 - Each operation is implemented as a separate mixin class
 - Enables modular code organization and easy addition of new operations
 
-**AsyncSequence<T>** — Asynchronous version of the sequence:
+**`AsyncSequence<T>`** — Asynchronous version of the sequence:
 
 - Uses `AsyncIterator<T>` instead of `Iterator<T>`
 - All operations return `Promise`
