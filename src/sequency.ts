@@ -266,3 +266,18 @@ export function range(start: number, endInclusive: number, step: number = 1): Se
         }
     });
 }
+
+/**
+ * Creates a tuple from the given arguments, preserving tuple types for better type inference.
+ * Useful when working with sequences that need to maintain tuple types, especially when using `toMap`.
+ *
+ * @param {...T} args Arguments to create a tuple from
+ * @returns Tuple of the arguments
+ * @example
+ * // Preserves tuple type [string, number] instead of (string | number)[]
+ * const result = sequenceOf(["a", 1], ["b", 2])
+ *   .mapNotNull(([key, value]) => value > 0 ? tuple(key, value) : null)
+ *   .toMap();
+ * // result: Map<string, number>
+ */
+export const tuple = <T extends any[]>(...args: T) => args;

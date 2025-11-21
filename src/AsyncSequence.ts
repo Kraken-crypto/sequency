@@ -68,6 +68,7 @@ import {Take as TakeOp} from "./operators/async/take";
 import {TakeWhile as TakeWhileOp} from "./operators/async/takeWhile";
 import {ToArray as ToArrayOp} from "./operators/async/toArray";
 import {ToMap as ToMapOp} from "./operators/async/toMap";
+import {ToMapNotNull as ToMapNotNullOp} from "./operators/async/toMapNotNull";
 import {ToSequence as ToSequenceOp} from "./operators/async/toSequence";
 import {ToSet as ToSetOp} from "./operators/async/toSet";
 import {Unzip as UnzipOp} from "./operators/async/unzip";
@@ -91,7 +92,7 @@ export interface AsyncSequenceOperators<T> extends AllOp, AnyOp, AsIterableOp, A
     ElementAtOp, ElementAtOrElseOp, ElementAtOrNullOp, FilterOp, FilterIndexedOp, FilterNotOp, FilterNotNullOp, FirstOp, FirstOrNullOp, FlatMapOp, FlattenOp, FoldOp,
     FoldIndexedOp, ForEachOp, ForEachIndexedOp, GroupByOp, IndexOfOp, IndexOfFirstOp, IndexOfLastOp, IsEmptyOp, IsNotEmptyOp, JoinToStringOp, LastOp, LastOrNullOp, MapOp, MapIndexedOp, MapNotNullOp, MaxOp, MaxByOp,
     MaxWithOp, MergeOp, MinOp, MinByOp, MinusOp, MinWithOp, NoneOp, OnEachOp, OnEachIndexedOp, PartitionOp, PlusOp, ReduceOp, ReduceIndexedOp, ReverseOp, SingleOp, SingleOrNullOp, SortedOp,
-    SortedByOp, SortedByDescendingOp, SortedDescendingOp, SortedWithOp, SumOp, SumByOp, TakeOp, TakeWhileOp, ToArrayOp, ToMapOp, ToSetOp, ToSequenceOp, UnzipOp, WithIndexOp, ZipOp {
+    SortedByOp, SortedByDescendingOp, SortedDescendingOp, SortedWithOp, SumOp, SumByOp, TakeOp, TakeWhileOp, ToArrayOp, ToMapOp, ToMapNotNullOp, ToSetOp, ToSequenceOp, UnzipOp, WithIndexOp, ZipOp {
 }
 
 export class AsyncSequenceImpl<T> {
@@ -103,4 +104,4 @@ applyMixins(AsyncSequenceImpl, [AllOp, AnyOp, AsIterableOp, AssociateOp, Associa
     ElementAtOp, ElementAtOrElseOp, ElementAtOrNullOp, FilterOp, FilterIndexedOp, FilterNotOp, FilterNotNullOp, FirstOp, FirstOrNullOp, FlatMapOp, FlattenOp, FoldOp,
     FoldIndexedOp, ForEachOp, ForEachIndexedOp, GroupByOp, IndexOfOp, IndexOfFirstOp, IndexOfLastOp, IsEmptyOp, IsNotEmptyOp, JoinToStringOp, LastOp, LastOrNullOp, MapOp, MapIndexedOp, MapNotNullOp, MaxOp, MaxByOp,
     MaxWithOp, MergeOp, MinOp, MinByOp, MinusOp, MinWithOp, NoneOp, OnEachOp, OnEachIndexedOp, PartitionOp, PlusOp, ReduceOp, ReduceIndexedOp, ReverseOp, SingleOp, SingleOrNullOp, SortedOp,
-    SortedByOp, SortedByDescendingOp, SortedDescendingOp, SortedWithOp, SumOp, SumByOp, TakeOp, TakeWhileOp, ToArrayOp, ToMapOp, ToSetOp, ToSequenceOp, UnzipOp, WithIndexOp, ZipOp]);
+    SortedByOp, SortedByDescendingOp, SortedDescendingOp, SortedWithOp, SumOp, SumByOp, TakeOp, TakeWhileOp, ToArrayOp, ToMapOp, ToMapNotNullOp, ToSetOp, ToSequenceOp, UnzipOp, WithIndexOp, ZipOp]);

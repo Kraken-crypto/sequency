@@ -89,6 +89,6 @@ jobs:
           
           # Commit and push version increment
           git add package.json
-          git commit -m "chore: increment version after release"
+          git commit -m "Incremented version after release"
           git push
 
