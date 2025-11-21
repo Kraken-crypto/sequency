@@ -113,7 +113,7 @@ Sequences are **lazily evaluated** to avoid examining all of the input data when
 
 ## API documentation
 
-Full API documentation is available at [https://kraken-crypto.github.io/sequency](https://kraken-crypto.github.io/sequency).
+Full API documentation is available at [Sequency API docs](https://kraken-crypto.github.io/sequency).
 
 Sequency is also fully documented via inline JSDoc comments. When using an IDE like Intellij IDEA or Webstorm the docs are available inline right inside your editor.
 
