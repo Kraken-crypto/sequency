@@ -1,6 +1,6 @@
 {
   "name": "sequence-collection-api",
-  "version": "0.20.6",
+  "version": "0.20.7",
   "description": "Functional sequences for processing iterable data in JavaScript",
   "main": "./lib/cjs/sequency.js",
   "module": "./lib/esm/sequency.js",
