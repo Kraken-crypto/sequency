@@ -15,8 +15,6 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -24,10 +22,8 @@ jobs:
           node-version: '18'
           registry-url: 'https://registry.npmjs.org'
 
-      - name: Setup Yarn
-        uses: actions/setup-node@v4
-        with:
-          node-version: '18'
+      - name: Ensure npm 11.5.1 or later
+        run: npm install -g npm@latest
 
       - name: Enable Corepack
         run: corepack enable

@@ -12,18 +12,11 @@
 
 Sequency is a lightweight (**5 KB minified**), intensely tested (**200+ tests, 99% coverage**), type-safe functional programming library for processing iterable data such as arrays, sets and maps. It's written in TypeScript, compiles to ES5-compatible JavaScript and works in all current browsers and Node applications. The API is inspired by [Sequences](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.sequences/-sequence/) from the programming language [Kotlin](https://kotlinlang.org/).
 
-> [Try Sequency](https://npm.runkit.com/sequency) right in your browser.
 
 ## Getting started
 
 ```bash
-npm install --save sequency
-```
-
-Alternatively use Sequency from [CDN](https://unpkg.com/sequency/) by adding this to your HTML:
-
-```html
-<script src="https://unpkg.com/sequency"></script>
+npm install --save sequence-collection-api
 ```
 
 ## How Sequency works
@@ -40,7 +33,7 @@ import {
     range,
     generateSequence,
     extendSequence
-} from 'sequency';
+} from 'sequence-collection-api';
 ```
 
 - `sequenceOf` accepts one or many values and returns a new sequence.
