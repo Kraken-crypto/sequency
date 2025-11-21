@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
-      packages: write
+      id-token: write
 
     steps:
       - name: Checkout code
@@ -22,8 +22,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '18'
-          registry-url: 'https://npm.pkg.github.com'
-          scope: '@${{ github.repository_owner }}'
+          registry-url: 'https://registry.npmjs.org'
 
       - name: Setup Yarn
         uses: actions/setup-node@v4
@@ -39,15 +38,8 @@ jobs:
       - name: Build project
         run: yarn build
 
-      - name: Publish to GitHub Packages
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          # Configure npm authentication for GitHub Packages
-          echo "//npm.pkg.github.com/:_authToken=${{ secrets.GITHUB_TOKEN }}" >> .npmrc
-          
-          # Publish
-          npm publish
+      - name: Publish to npm
+        run: npm publish --access public
 
       - name: Create Release
         env:
@@ -69,7 +61,8 @@ jobs:
           fi
           
           # Create release body with installation instructions
-          RELEASE_BODY="Release $TAG_NAME\n\nInstall: \`npm install @kraken-crypto/sequency@$VERSION\`\n\nAdd to package.json: \`\"@kraken-crypto/sequency\": \"$VERSION\"\`"
+          PACKAGE_NAME=$(node -p "require('./package.json').name")
+          RELEASE_BODY="Release $TAG_NAME\n\nInstall: \`npm install $PACKAGE_NAME@$VERSION\`\n\nAdd to package.json: \`\"$PACKAGE_NAME\": \"$VERSION\"\`"
           RELEASE_BODY_JSON=$(echo "$RELEASE_BODY" | sed 's/"/\\"/g' | sed ':a;N;$!ba;s/\n/\\n/g')
           
           # Create GitHub release using GitHub API

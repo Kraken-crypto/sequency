@@ -1,5 +1,5 @@
 {
-  "name": "@kraken-crypto/sequency",
+  "name": "sequence-collection-api",
   "version": "0.20.5",
   "description": "Functional sequences for processing iterable data in JavaScript",
   "main": "./lib/cjs/sequency.js",
@@ -47,7 +47,7 @@
     "node": ">=6.0.0"
   },
   "publishConfig": {
-    "registry": "https://npm.pkg.github.com"
+    "access": "public"
   },
   "packageManager": "yarn@4.1.1",
   "devDependencies": {
