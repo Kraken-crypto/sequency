@@ -1,6 +1,6 @@
 {
   "name": "@kraken-crypto/sequency",
-  "version": "0.20.0",
+  "version": "0.20.1",
   "description": "Functional sequences for processing iterable data in JavaScript",
   "main": "./lib/cjs/sequency.js",
   "module": "./lib/esm/sequency.js",
