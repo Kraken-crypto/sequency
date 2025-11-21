@@ -1,4 +1,4 @@
-name: Build and Publish
+name: Publish
 
 on:
   push:
@@ -68,12 +68,16 @@ jobs:
             git push origin "$TAG_NAME"
           fi
           
+          # Create release body with installation instructions
+          RELEASE_BODY="Release $TAG_NAME\n\nInstall: \`npm install @kraken-crypto/sequency@$VERSION\`\n\nAdd to package.json: \`\"@kraken-crypto/sequency\": \"$VERSION\"\`"
+          RELEASE_BODY_JSON=$(echo "$RELEASE_BODY" | sed 's/"/\\"/g' | sed ':a;N;$!ba;s/\n/\\n/g')
+          
           # Create GitHub release using GitHub API
           RELEASE_RESPONSE=$(curl -s -w "\n%{http_code}" -X POST \
             -H "Authorization: token $GITHUB_TOKEN" \
             -H "Accept: application/vnd.github.v3+json" \
             "https://api.github.com/repos/${{ github.repository }}/releases" \
-            -d "{\"tag_name\":\"$TAG_NAME\",\"name\":\"$TAG_NAME\",\"body\":\"Release $TAG_NAME\",\"draft\":false,\"prerelease\":false}")
+            -d "{\"tag_name\":\"$TAG_NAME\",\"name\":\"$TAG_NAME\",\"body\":\"$RELEASE_BODY_JSON\",\"draft\":false,\"prerelease\":false}")
           
           HTTP_CODE=$(echo "$RELEASE_RESPONSE" | tail -n1)
           if [ "$HTTP_CODE" = "201" ]; then
