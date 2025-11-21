@@ -43,15 +43,6 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          # Get version from package.json
-          VERSION=$(node -p "require('./package.json').version")
-          
-          # Remove 'v' prefix if present
-          VERSION=${VERSION#v}
-          
-          # Update package.json version
-          npm version $VERSION --no-git-tag-version
-          
           # Configure npm authentication for GitHub Packages
           echo "//npm.pkg.github.com/:_authToken=${{ secrets.GITHUB_TOKEN }}" >> .npmrc
           
